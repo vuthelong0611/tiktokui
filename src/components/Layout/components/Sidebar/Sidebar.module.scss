@@ -1,0 +1,13 @@
+.wrapper{
+    width: 356px;
+    min-height: 1000px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+   
+}
+.foryou, .following,.live{
+   height: 48px;
+   width: 340px;
+  padding: 8px;
+}
