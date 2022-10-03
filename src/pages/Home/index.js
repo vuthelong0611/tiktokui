@@ -1,9 +1,10 @@
+import Body from "../../components/Layout/components/Body";
 function Home() {
-    return (  
-        <>
-            Homepage
-        </>
-    );
+  return (
+    <>
+      <Body />
+    </>
+  );
 }
 
 export default Home;
