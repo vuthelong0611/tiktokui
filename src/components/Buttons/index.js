@@ -4,7 +4,16 @@ import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
-function Button({ to, href, children, primary, onClick, outline, a }) {
+function Button({
+  to,
+  href,
+  children,
+  primary,
+  onClick,
+  outline,
+  a,
+  className,
+}) {
   let Comp = "button";
   const props = {
     onClick,
@@ -15,9 +24,12 @@ function Button({ to, href, children, primary, onClick, outline, a }) {
   } else if (href) {
     props.href = href;
     Comp = "a";
-  } else {
   }
+  // } else {
+  //   Comp = "button"
+  // }
   const classes = cx("wrapper", {
+    [className]: className,
     primary,
     outline,
     a,
