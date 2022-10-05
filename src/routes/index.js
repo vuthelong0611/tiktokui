@@ -13,8 +13,6 @@ const publicRoutes = [
 {path:'/search:search' , component: Search },
 {path:'/:name' , component: User },
 
-
-
 ]
 const privateRoutes = [ 
 

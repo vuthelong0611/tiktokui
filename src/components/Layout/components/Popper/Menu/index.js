@@ -6,9 +6,12 @@ import { useState } from "react";
 import Button from "../../../../Buttons";
 
 const cx = classNames.bind(styles);
-function Menu({ children, data1 = [], onChange }) {
+function Menu({ children, data1 = [], onA }) {
   const [history, setHistory] = useState([{ data: data1 }]);
   const current = history[history.length - 1];
+  const handle = () => {
+    localStorage.removeItem("user");
+  };
   const renderItems = () => {
     return (
       <div className={cx("btncontainer")}>
@@ -19,17 +22,17 @@ function Menu({ children, data1 = [], onChange }) {
               className={cx("btna")}
               key={index}
               to={item.to}
-              
               onClick={() => {
                 if (isParent) {
                   setHistory((prev) => [...prev, item.children]);
-                } else {
-                  onChange(item.a);
+                } else if (item.a === true) {
+                  handle();
+                  window.location.reload(true);
                 }
               }}
             >
-              {item.icon}
-              {item.title}
+              <span>{item.icon}</span>
+              <span> {item.title}</span>
             </Button>
           );
         })}
@@ -38,10 +41,9 @@ function Menu({ children, data1 = [], onChange }) {
   };
   return (
     <Tippy
-    
+      visible
       delay={[0, 700]}
       offset={[12, 8]}
-      
       interactive
       placement="bottom-end"
       render={(attrs) => (

@@ -7,14 +7,10 @@ import "tippy.js/dist/tippy.css"; // optional
 import React, { useState, useEffect } from "react";
 import { Wrapper as PoperWrapper } from "../Popper";
 import {
-  faCircleXmark,
-  faSpinner,
-  faMagnifyingGlass,
+
   faEarthAsia,
-  faLanguage,
   faQuestion,
   faKeyboard,
-  faMessage,
   faGear,
   faSignOut,
   faUser,
@@ -29,15 +25,31 @@ import { AiFillMessage } from "react-icons/ai";
 import Popup from "reactjs-popup";
 import Noti from "../Popper/Noti";
 import Search from "../Popper/Search";
+import Login from "../Popper/Login";
 const cx = classNames.bind(styles);
 function Header(setisChoose) {
-  const [isLogin, setLogin] = useState(false);
-  const [account, setAccout] = useState([]);
+ const [user,setUser] = useState('')
+ const [password,setPassword] = useState('')
+  const fetchJobs = async () => {
+    try {
+      const reponse = await fetch('https://tiktok.fullstack.edu.vn/api/auth/login?email=long0611@gmail.com&password=1234567', {
+        method: 'POST',
+      })
+      const newJobs = await reponse.json();
+    localStorage.setItem("user",JSON.stringify(newJobs.data))
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
-    setTimeout(() => {
-      setAccout([1, 2, 3]);
-    }, 3000);
+    fetchJobs();
   }, []);
+  
+  const user1 =  JSON.parse(localStorage.getItem("user"))
+
+const handle = () =>{
+  localStorage.removeItem("user")
+}
   const MENU_ITEMS = [
     {
       icon: <FontAwesomeIcon icon={faEarthAsia}></FontAwesomeIcon>,
@@ -65,11 +77,12 @@ function Header(setisChoose) {
       title: "Keywords and ShortCut",
     },
   ];
+  
   const userMenu = [
     {
         icon: <FontAwesomeIcon icon={faUser} />,
         title: 'View profile',
-        to: '/hoa',
+        to: `/${user1 !== null ? user1.nickname : ''}`,
     },
     {
         icon: <FontAwesomeIcon icon={faCoins} />,
@@ -85,6 +98,7 @@ function Header(setisChoose) {
     {
         icon: <FontAwesomeIcon icon={faSignOut} />,
         title: 'Log out',
+        a: true,
     },
 ];
   return (
@@ -108,7 +122,7 @@ function Header(setisChoose) {
             </Button>
           </div>
 
-          {!isLogin ? (
+          {user1 !== null ? (
             <>
               <Tippy
                 render={(attrs) => (
@@ -130,7 +144,7 @@ function Header(setisChoose) {
                 } position= 'left top center'>
                <Noti />
               </Popup>
-              <Menu data1={userMenu}>
+              <Menu data1={userMenu} >
                 <button className={cx("btn-more")}>
                   <BsThreeDotsVertical></BsThreeDotsVertical>
                 </button>
@@ -138,7 +152,13 @@ function Header(setisChoose) {
             </>
           ) : (
             <>
-              <Button primary> Log in </Button>
+             <Popup
+                trigger={
+                  <button > Log in </button>
+                } position= 'left top center'>
+               <Login />
+              </Popup>
+            
               <Menu data1={MENU_ITEMS} >
                 <button className={cx("btn-more")}>
                   <BsThreeDotsVertical></BsThreeDotsVertical>

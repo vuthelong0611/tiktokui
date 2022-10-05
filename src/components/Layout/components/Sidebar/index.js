@@ -45,7 +45,6 @@ function Sidebar() {
           })
           .then((res) => {
             setData(res.data);
-            console.log(res.data)
           });
       
       
@@ -86,7 +85,7 @@ function Sidebar() {
 <>
 {data.map((item) => {
   return(
-  <Account data={item} />
+  <Account data={item} key={item.id}/>
   )
 })}
 </>

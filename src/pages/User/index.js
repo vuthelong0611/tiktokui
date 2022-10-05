@@ -23,7 +23,7 @@ function User() {
   };
   useEffect(() => {
     fetchJobs();
-  }, []);
+  }, [a]);
   return (
     <section>
       <div className={cx("container")}>

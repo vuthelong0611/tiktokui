@@ -3,7 +3,7 @@ import HeadlessTippy from "@tippyjs/react/headless";
 import classNames from "classnames/bind";
 import styles from "./Search.module.scss";
 import axios from "axios";
-import {get} from "../../../../../utils/request";
+import { get } from "../../../../../utils/request";
 import { Wrapper as PoperWrapper } from "../index";
 import {
   faCircleXmark,
@@ -47,17 +47,15 @@ function Search(setisChoose, setisChoose1, setisChoose2) {
         // const newJobs = await reponse.json();
         // setJobs(newJobs.data);
 
-      
-          get('users/search', {
-            params: {
-              q: debouned,
-              type: "less",
-            },
-          })
-          .then((res) => {
-            setJobs(res.data);
-            setShowResult(true);
-          });
+        get("users/search", {
+          params: {
+            q: debouned,
+            type: "less",
+          },
+        }).then((res) => {
+          setJobs(res.data);
+          setShowResult(true);
+        });
       }
       if (search === "") {
         setJobs([]);
@@ -114,8 +112,8 @@ function Search(setisChoose, setisChoose1, setisChoose2) {
         <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
       )}
       <button className={cx("btn-search")}>
-        <Link to= {`/search${search}`}>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        <Link to={search !== "" && `/search${search}`}>
+          <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
         </Link>
       </button>
     </div>

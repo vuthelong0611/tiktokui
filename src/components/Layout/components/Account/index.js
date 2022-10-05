@@ -4,7 +4,6 @@ import styles from "./Account.module.scss";
 
 const cx = classNames.bind(styles);
 function Account({ data }) {
-  console.log(data);
   return (
       <div className={cx("avatar")}>
           <Link to={`/${data.nickname}`}>

@@ -20,7 +20,6 @@ function Body() {
           })
           .then((res) => {
             setData(res.data);
-            console.log(number)
           });
       }
    

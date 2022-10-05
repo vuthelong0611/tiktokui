@@ -1,5 +1,4 @@
 .content {
-    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
     font-size: 16px;
     line-height: 22px;
     padding: 8px 0px;
@@ -18,7 +17,7 @@
 .btncontainer {
     display: flex;
     flex-direction: column;
-    width:100%;
+    width: 100%;
     background-color: white;
 }
 
@@ -29,27 +28,31 @@
     padding: 10px 8px 10px 16px;
     display: flex;
     border-radius: 4px;
-cursor: pointer;
+    cursor: pointer;
+
     &:hover {
         background: rgba(22, 24, 35, 0.03);
 
     }
 }
-.header{
+
+.header {
     position: relative;
     height: 40px;
     align-items: center;
 }
-.back-btn{
+
+.back-btn {
     width: 50px;
     height: 100%;
     background-color: white;
     cursor: pointer;
     border: none;
 }
-.header-title{
+
+.header-title {
     position: absolute;
-    top : -40%;
+    top: -40%;
     left: 50%;
-    transform: translate(-50% , -50%);
+    transform: translate(-50%, -50%);
 }

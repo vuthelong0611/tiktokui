@@ -42,7 +42,7 @@ function Video({ data }) {
   
   return (
     <div className={cx("avatar")}>
-      <video controls ref= {videoRef} className={cx("video")} loop preload="true" onClick={onVideoClick} >
+      <video  ref= {videoRef} className={cx("video")} loop preload="true" onClick={onVideoClick} >
         <source src={data.file_url} type="video/mp4" />
        
       </video>
